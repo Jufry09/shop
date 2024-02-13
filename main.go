@@ -16,6 +16,8 @@ func main() {
 
 	db.AutoMigrate(
 		entity.User{},
+		entity.Category{},
+		entity.Product{},
 	)
 
 	e := echo.New()

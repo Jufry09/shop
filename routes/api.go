@@ -11,5 +11,18 @@ func SetupRoute(e *echo.Echo, db *gorm.DB) {
 
 	e.GET("/user", userHandler.Index)
 	e.POST("/user", userHandler.Create)
+	e.PUT("/user/:id", userHandler.Update)
+	e.GET("/user/:id", userHandler.Show)
+	e.DELETE("/user/:id", userHandler.Delete)
+
+	categoryHandler := handler.NewCategoryHandler(db)
+	cat := e.Group("/category")
+	cat.GET("", categoryHandler.Index)
+	cat.POST("", categoryHandler.Create)
+
+	productHandler := handler.NewProductHandler(db)
+	product := e.Group("/product")
+	product.GET("", productHandler.Index)
+	product.POST("", productHandler.Create)
 
 }
